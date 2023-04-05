@@ -23,6 +23,10 @@ class LogAcessoMiddelware
         $rota = $request->getRequestUri();
         LogAcesso::create(['log' => "IP $ip requisitou a rota $rota"]);
         
-        return $next($request);
+        $resposta = $next($request);
+        
+        $resposta->setStatusCode(201,'Tudo certo');
+
+        return $resposta;
     }
 }
