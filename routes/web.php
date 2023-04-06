@@ -18,8 +18,9 @@ Route::get('/', [\App\Http\Controllers\PrincipalController::class,'principal'])-
 Route::get('/contato', [\App\Http\Controllers\ContatoController::class,'contato'])->name('site.contato');
 Route::post('/contato', [\App\Http\Controllers\ContatoController::class,'salvar'])->name('site.contato');
 Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class,'sobrenos'])->name('site.sobrenos');
-Route::get('/login', [\App\Http\Controllers\SobreNosController::class,'login'])->name('site.login');
 
+Route::get('/login/{erro?}', [\App\Http\Controllers\LoginController::class,'index'])->name('site.login');
+Route::post('/login', [\App\Http\Controllers\LoginController::class,'autenticar'])->name('site.login');
 Route::middleware('autenticacao:ldap')
     ->prefix('/app')->group(function() {
         Route::get('/clientes', [\App\Http\Controllers\ClientesController::class,'clientes'])->name('app.clientes');
