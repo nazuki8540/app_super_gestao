@@ -23,9 +23,11 @@ Route::get('/login/{erro?}', [\App\Http\Controllers\LoginController::class,'inde
 Route::post('/login', [\App\Http\Controllers\LoginController::class,'autenticar'])->name('site.login');
 Route::middleware('autenticacao:ldap')
     ->prefix('/app')->group(function() {
-        Route::get('/clientes', [\App\Http\Controllers\ClientesController::class,'clientes'])->name('app.clientes');
-        Route::get('/fornecedores', [\App\Http\Controllers\FornecedoresController::class,'fornecedores'])->name('app.fornecedores@index');
-        Route::get('/produtos', [\App\Http\Controllers\ProdutosController::class,'produtos'])->name('app.produtos');
+        Route::get('/home', [\App\Http\Controllers\HomeController::class,'index'])->name('app.home');
+        Route::get('/sair', [\App\Http\Controllers\LoginController::class,'sair'])->name('app.sair');
+        Route::get('/cliente', [\App\Http\Controllers\ClienteController::class,'index'])->name('app.cliente');
+        Route::get('/fornecedor', [\App\Http\Controllers\FornecedorController::class,'index'])->name('app.fornecedor');
+        Route::get('/produto', [\App\Http\Controllers\ProdutoController::class,'index'])->name('app.produto');
 });
 
 Route::get('/teste/{p1}/{p2}',[\App\Http\Controllers\TesteController::class,'teste'])->name('teste');
