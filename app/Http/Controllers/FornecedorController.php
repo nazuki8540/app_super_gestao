@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
-
 class FornecedorController extends Controller
 {
     public function index(){
         return view('app.fornecedor.index');
     }
 
-    public function listar()
+    public function listar(Request $request)
     {
-        return view('app.fornecedor.listar');
+        // dd($request->all());
+        $fornecedores = Fornecedor::where('nome','like', '%'.$request->input('nome').'%')
+            ->where('site','like','%'.$request->input('site').'%')
+            ->where('uf','like','%'.$request->input('uf').'%')
+            ->where('email','like','%'.$request->input('email').'%')
+            ->get();
+
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores]);
     }
     public function adicionar(Request $request){
-        
+        $msn = "";
         if($request->input('_token') != ''){
 
             $regras = [
-                'Nome' => 'required|min:3|max:40',
+                'nome' => 'required|min:3|max:40',
                 'site' => 'required',
                 'uf' => 'required|min:2|max:2',
                 'email' => 'email'
@@ -35,13 +42,15 @@ class FornecedorController extends Controller
             ];
 
             $request->validate($regras, $feedback);
-            echo 'chegamos ate aqui';
-            
+
+            $fornecedor = new Fornecedor();
+            $fornecedor->create($request->all());
+
+
+            $msn = "Cadastro realizado com sucesso!";
         }
-        print_r($request->all());
-            
         
-        return view('app.fornecedor.adicionar');
+        return view('app.fornecedor.adicionar', ['msn' => $msn]);
     }
 
 }
