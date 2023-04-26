@@ -29,8 +29,24 @@ input, select, textarea, button {
     color: #333;
 }
 
+.pagination li{
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.pagination ul{
+    list-style-type: none;
+}
+
 .texto-branco {
     color: #ffffff;
+}
+
+svg{
+    display: none;
+}
+p.text-sm{
+    display: none;
 }
 
 .borda-branca {
