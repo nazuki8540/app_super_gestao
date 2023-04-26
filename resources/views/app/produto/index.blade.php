@@ -38,6 +38,8 @@
                         <td>{{$produto->descricao}}</td>
                         <td>{{$produto->peso}}</td>
                         <td>{{$produto->unidade_id}}</td>
+                        <td>excluir</td>
+                        <td>editar</td>
                     </tr>
                     @endforeach
                 </tbody>

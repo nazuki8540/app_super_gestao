@@ -27,7 +27,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        echo 'create';
+        return view('app.produto.create');
     }
 
     /**
