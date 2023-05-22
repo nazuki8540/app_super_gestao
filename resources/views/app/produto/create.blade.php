@@ -25,11 +25,11 @@
         <div style="width:30%; margin-left:auto;margin-right:auto;">
 
             @if (isset($produto->id))
-            <form method="post" action="{{route('produto.update', ['produto' => $produto->id])}}">
+            <form method="post" action="{{route('produto.update',['produto' => $produto->id]) }}">
                 @csrf
                 @method('PUT')
             @else
-            <form method="post" action="{{route('produto.store',['produto' => $produto->id])}}">
+            <form method="post" action="{{  route('produto.store',['produto' => $produto->id]) }}">
                 @csrf
             @endif
                 <input type="text" name="nome" value="{{$produto->nome ?? old('nome')}}"  placeholder ="Nome" class="borda-preta">
