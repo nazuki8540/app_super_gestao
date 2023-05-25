@@ -29,6 +29,8 @@ Route::middleware('autenticacao:ldap')
         Route::get('/fornecedor/excluir/{id}/{msn?}', [\App\Http\Controllers\FornecedorController::class,'excluir'])->name('app.fornecedor.excluir');
         //produtos
         Route::resource('produto', \App\Http\Controllers\ProdutoController::class);
+        //produto detalhes
+        Route::resource('produto-detalhe', \App\Http\Controllers\ProdutoDetalheController::class);
 });
 
 Route::get('/teste/{p1}/{p2}',[\App\Http\Controllers\TesteController::class,'teste'])->name('teste');
